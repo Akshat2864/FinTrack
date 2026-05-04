@@ -80,7 +80,7 @@ export const AuthPage: React.FC = () => {
           <div className="flex flex-col items-center mb-12">
             <div className="w-16 h-16 border border-black rounded-full overflow-hidden flex items-center justify-center mb-8">
               <img
-                src="./cropped_icon.png"
+                src="/cropped_icon.png"
                 className="w-full h-full object-cover"
               />
             </div>
