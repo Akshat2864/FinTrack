@@ -3,7 +3,7 @@ import { supabase } from "../services/supabase";
 import { motion } from "motion/react";
 import { AlertCircle } from "lucide-react";
 import { clsx } from "clsx";
-import { useNavigate } from "react-router";
+
 
 export const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -11,7 +11,7 @@ export const AuthPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
