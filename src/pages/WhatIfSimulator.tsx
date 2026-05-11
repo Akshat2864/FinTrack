@@ -104,14 +104,14 @@ export const WhatIfSimulator: React.FC = () => {
       <header className="flex flex-col md:flex-row md:items-baseline justify-between gap-6 border-b border-black/5 pb-8">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-bold">Optimization Engine</p>
-          <h1 className="text-5xl font-serif mt-2 italic">Strategy Lab</h1>
+          <h1 className="text-3xl md:text-5xl font-serif mt-2 italic">Strategy Lab</h1>
         </div>
-        <div className="flex items-center gap-2">
-           <span className="text-[10px] uppercase tracking-widest font-bold text-black/30">Active Scenario:</span>
+        <div className="flex items-center gap-4">
+           <span className="text-[10px] uppercase tracking-widest font-bold text-black/30 shrink-0">Active Scenario:</span>
            <select 
              value={selectedEmiId}
              onChange={(e) => setSelectedEmiId(e.target.value)}
-             className="bg-white border border-black/5 px-4 py-2 text-[11px] uppercase tracking-widest font-bold shadow-sm outline-none focus:ring-1 ring-black/5"
+             className="bg-white border border-black/5 px-4 py-2 text-[11px] uppercase tracking-widest font-bold shadow-sm outline-none focus:ring-1 ring-black/5 w-full md:w-auto"
            >
              <option value="custom">Custom Sandbox</option>
              {emis.map(e => <option key={e.id} value={e.id}>{e.loan_name}</option>)}
@@ -195,39 +195,41 @@ export const WhatIfSimulator: React.FC = () => {
         <div className="lg:col-span-8 space-y-12">
           {/* Top Scorecards */}
           <div className="grid md:grid-cols-2 gap-8">
-             <div className="bg-[#1a1a1a] p-10 text-white shadow-2xl relative">
+             <div className="bg-[#1a1a1a] p-6 md:p-10 text-white shadow-2xl relative">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-white/30 mb-8 font-bold">Mitigated Liability</p>
                 <div className="space-y-1">
-                   <h2 className="text-5xl font-serif italic text-emerald-400">{formatCurrency(totalInterest)}</h2>
+                   <h2 className="text-3xl md:text-5xl font-serif italic text-emerald-400">{formatCurrency(totalInterest)}</h2>
                    <p className="text-[8px] uppercase tracking-widest text-white/20">Total Projected Interest Bill</p>
                 </div>
-                <div className="mt-12 pt-12 border-t border-white/5 flex items-center justify-between">
+                <div className="mt-8 md:mt-12 pt-8 md:pt-12 border-t border-white/5 flex items-center justify-between">
                    <div>
                       <p className="text-[8px] uppercase tracking-widest text-white/40 mb-1">Time Reduction</p>
-                      <p className="text-xl font-serif">{monthsSaved} Months</p>
+                      <p className="text-lg md:text-xl font-serif">{monthsSaved} Months</p>
                    </div>
-                   <div className="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-400">
+                   <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-400">
                       <Zap size={24} />
                    </div>
                 </div>
              </div>
 
-             <div className="bg-white border border-black/5 p-10 shadow-sm flex flex-col justify-between">
-                <header className="flex justify-between items-start">
+             <div className="bg-white border border-black/5 p-6 md:p-10 shadow-sm flex flex-col justify-between">
+                <header className="flex flex-col sm:flex-row justify-between items-start gap-6 sm:gap-0">
                    <div className="space-y-1">
                       <h4 className="text-sm font-serif italic">Cost Distribution</h4>
                       <p className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Principal vs Interest</p>
                    </div>
-                   <PieChart width={80} height={80}>
-                      <Pie 
-                        data={pieData} 
-                        cx="50%" cy="50%" 
-                        innerRadius={25} outerRadius={35} 
-                        paddingAngle={5} dataKey="value"
-                      >
-                        {pieData.map((_, i) => <Cell key={`cell-${i}`} fill={COLORS[i % COLORS.length]} />)}
-                      </Pie>
-                   </PieChart>
+                   <div className="w-20 h-20 shrink-0">
+                      <PieChart width={80} height={80}>
+                         <Pie 
+                           data={pieData} 
+                           cx="50%" cy="50%" 
+                           innerRadius={25} outerRadius={35} 
+                           paddingAngle={5} dataKey="value"
+                         >
+                           {pieData.map((_, i) => <Cell key={`cell-${i}`} fill={COLORS[i % COLORS.length]} />)}
+                         </Pie>
+                      </PieChart>
+                   </div>
                 </header>
                 
                 <div className="space-y-4 mt-8">
@@ -265,9 +267,9 @@ export const WhatIfSimulator: React.FC = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    className="grid grid-cols-12 gap-6 items-center bg-white p-6 border border-black/5 hover:shadow-md transition-shadow"
+                    className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-white p-6 border border-black/5 hover:shadow-md transition-shadow relative"
                   >
-                    <div className="col-span-4 space-y-1.5">
+                    <div className="col-span-12 md:col-span-4 space-y-1.5">
                       <label className="text-[8px] uppercase tracking-widest font-bold text-black/30">Capital Injection</label>
                       <div className="flex items-center gap-2 border-b border-black/10 focus-within:border-black transition-colors py-1">
                         <span className="text-black/40 text-sm">₹</span>
@@ -279,7 +281,7 @@ export const WhatIfSimulator: React.FC = () => {
                         />
                       </div>
                     </div>
-                    <div className="col-span-3 space-y-1.5">
+                    <div className="col-span-12 md:col-span-3 space-y-1.5">
                       <label className="text-[8px] uppercase tracking-widest font-bold text-black/30">Cycle</label>
                       <select 
                         value={plan.type}
@@ -291,7 +293,7 @@ export const WhatIfSimulator: React.FC = () => {
                         <option value="one-time">Lump Sum</option>
                       </select>
                     </div>
-                    <div className="col-span-4 space-y-1.5">
+                    <div className="col-span-10 md:col-span-4 space-y-1.5">
                       <label className="text-[8px] uppercase tracking-widest font-bold text-black/30">Commencement Date</label>
                       <input 
                         type="month" 
@@ -300,7 +302,7 @@ export const WhatIfSimulator: React.FC = () => {
                         className="w-full bg-transparent border-b border-black/10 py-2 text-[10px] items-center outline-none"
                       />
                     </div>
-                    <div className="col-span-1 flex justify-end">
+                    <div className="col-span-2 md:col-span-1 flex justify-end">
                       <button 
                          onClick={() => setPrePayments(prePayments.filter(p => p.id !== plan.id))}
                          className="p-2 text-black/20 hover:text-red-500 transition-colors"
@@ -322,17 +324,16 @@ export const WhatIfSimulator: React.FC = () => {
                    <p className="text-[9px] uppercase tracking-widest font-bold text-black/30">Annual Consolidation</p>
                 </div>
              </div>
-
              <div className="bg-white border border-black/5 overflow-hidden">
                 <table className="w-full text-left">
                    <thead>
                       <tr className="bg-black/80 text-white leading-none">
-                         <th className="p-5 font-serif font-thin italic text-lg uppercase tracking-widest">Year</th>
-                         <th className="p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Principal (A)</th>
-                         <th className="p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Interest (B)</th>
-                         <th className="p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Injection (C)</th>
-                         <th className="p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Total (A+B+C)</th>
-                         <th className="p-5 text-right text-[9px] uppercase tracking-widest font-bold opacity-60">Status</th>
+                         <th className="p-3 md:p-5 font-serif font-thin italic text-sm md:text-lg uppercase tracking-widest">Year</th>
+                         <th className="p-3 md:p-5 text-[8px] md:text-[9px] uppercase tracking-widest font-bold opacity-60">Principal</th>
+                         <th className="p-3 md:p-5 text-[8px] md:text-[9px] uppercase tracking-widest font-bold opacity-60">Interest</th>
+                         <th className="hidden sm:table-cell p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Injection</th>
+                         <th className="hidden sm:table-cell p-5 text-[9px] uppercase tracking-widest font-bold opacity-60">Total</th>
+                         <th className="p-3 md:p-5 text-right text-[8px] md:text-[9px] uppercase tracking-widest font-bold opacity-60">Status</th>
                       </tr>
                    </thead>
                    <tbody className="divide-y divide-black/5">
@@ -343,18 +344,18 @@ export const WhatIfSimulator: React.FC = () => {
                            onMouseLeave={() => setHoveredYear(null)}
                            className={`group transition-colors ${hoveredYear === row.year ? 'bg-black/[0.02]' : ''}`}
                          >
-                            <td className="p-5 font-serif text-lg">{row.year}</td>
-                            <td className="p-5 font-sans font-medium text-xs">{formatCurrency(row.principal)}</td>
-                            <td className="p-5 font-sans font-medium text-xs text-red-500">{formatCurrency(row.interest)}</td>
-                            <td className="p-5 font-sans font-medium text-xs text-blue-500">{formatCurrency(row.prePayment)}</td>
-                            <td className="p-5 font-sans font-bold text-xs">{formatCurrency(row.total)}</td>
-                            <td className="p-5 text-right">
+                            <td className="p-3 md:p-5 font-serif text-sm md:text-lg">{row.year}</td>
+                            <td className="p-3 md:p-5 font-sans font-medium text-[10px] md:text-xs">{formatCurrency(row.principal)}</td>
+                            <td className="p-3 md:p-5 font-sans font-medium text-[10px] md:text-xs text-red-500">{formatCurrency(row.interest)}</td>
+                            <td className="hidden sm:table-cell p-5 font-sans font-medium text-xs text-blue-500">{formatCurrency(row.prePayment)}</td>
+                            <td className="hidden sm:table-cell p-5 font-sans font-bold text-xs">{formatCurrency(row.total)}</td>
+                            <td className="p-3 md:p-5 text-right">
                                <div className="flex items-center justify-end gap-3">
                                   <div className="w-16 h-1 bg-black/5 rounded-full overflow-hidden">
                                      <div 
                                        className="h-full bg-black transition-all duration-500" 
                                        style={{ width: `${row.loanPaidPercentage}%` }} 
-                                     />
+                                      />
                                   </div>
                                   <span className="text-[10px] font-bold font-mono">{row.loanPaidPercentage.toFixed(0)}%</span>
                                </div>

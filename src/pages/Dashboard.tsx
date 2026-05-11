@@ -66,20 +66,18 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-12">
-      <header className="flex flex-col md:flex-row md:items-baseline justify-between gap-6">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-bold">Current Snapshot</p>
-          <h1 className="text-5xl font-serif mt-2">Financial Overview</h1>
+          <h1 className="text-3xl md:text-5xl font-serif mt-2">Financial Overview</h1>
         </div>
-        <div className="flex gap-4">
-          <Link to="/emi" className="text-[10px] uppercase tracking-widest font-bold px-6 py-3 border border-black hover:bg-black hover:text-white transition-all">
+        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <Link to="/emi" className="text-[10px] text-center uppercase tracking-widest font-bold px-6 py-3 border border-black hover:bg-black hover:text-white transition-all w-full md:w-auto">
             Add Liability
           </Link>
-          <Link to="/sip" className="text-[10px] uppercase tracking-widest font-bold px-6 py-3 bg-black text-white hover:bg-opacity-80 transition-all">
+          <Link to="/sip" className="text-[10px] text-center uppercase tracking-widest font-bold px-6 py-3 bg-black text-white hover:bg-opacity-80 transition-all w-full md:w-auto">
             New Investment
           </Link>
         </div>
-      </header>
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -106,8 +104,8 @@ export const Dashboard: React.FC = () => {
 
       <div className="grid grid-cols-12 gap-8">
         {/* Growth vs Debt Chart */}
-        <div className="col-span-12 lg:col-span-8 bg-white p-10 border border-black/5 shadow-sm rounded-sm">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-10">
+        <div className="col-span-12 lg:col-span-8 bg-white p-6 md:p-10 border border-black/5 shadow-sm rounded-sm">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
             <div>
               <h3 className="text-xs uppercase tracking-[0.2em] font-bold">Growth Projection vs Debt</h3>
               <p className="text-[9px] uppercase tracking-widest font-bold text-black/20 mt-1">Interactive Forecast</p>
@@ -169,7 +167,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Sidebar Feature: Active Lists */}
-        <div className="col-span-12 lg:col-span-4 bg-[#F5F2ED] p-10 flex flex-col rounded-sm">
+        <div className="col-span-12 lg:col-span-4 bg-[#F5F2ED] p-6 md:p-10 flex flex-col rounded-sm">
           <h4 className="text-xs uppercase tracking-[0.2em] font-bold mb-10">Active Trackers</h4>
           <div className="space-y-8 flex-1">
             {emis.slice(0, 2).map(e => (
