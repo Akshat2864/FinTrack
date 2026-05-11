@@ -189,7 +189,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto relative">
+      <main className="flex-1 overflow-y-auto relative pt-16 md:pt-0">
         <div className="max-w-6xl mx-auto p-6 md:p-12 pb-24 h-full">
           {/* Notification Overlay */}
           <AnimatePresence>

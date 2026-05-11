@@ -74,12 +74,12 @@ export const EMITracker: React.FC = () => {
       <header className="flex flex-col md:flex-row md:items-baseline justify-between gap-6">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-bold">Liability Management</p>
-          <h1 className="text-5xl font-serif mt-2">EMI Tracker</h1>
+          <h1 className="text-3xl md:text-5xl font-serif mt-2">EMI Tracker</h1>
         </div>
         {!isFormOpen && (
           <button 
             onClick={() => setIsFormOpen(true)}
-            className="text-[10px] uppercase tracking-widest font-bold px-8 py-4 bg-black text-white hover:bg-opacity-80 transition-all"
+            className="text-[10px] uppercase tracking-widest font-bold px-8 py-4 bg-black text-white hover:bg-opacity-80 transition-all w-full md:w-auto"
           >
             Declare New Debt
           </button>
@@ -94,9 +94,9 @@ export const EMITracker: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-white p-10 rounded-sm border border-black/5 shadow-sm mb-12">
+            <div className="bg-white p-6 md:p-10 rounded-sm border border-black/5 shadow-sm mb-12">
               <h2 className="text-sm uppercase tracking-[0.2em] font-bold mb-8 italic font-serif">Obligation Details</h2>
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div className="space-y-3">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-black/40 ml-1">Loan Identifier</label>
                   <input
@@ -212,26 +212,26 @@ const EMICard: React.FC<{ emi: EMI; onDelete: (id: string) => void }> = ({ emi, 
       animate={{ opacity: 1 }}
       className="bg-white rounded-sm border border-black/5 overflow-hidden hover:border-black/20 transition-all"
     >
-      <div className="p-8 flex flex-col md:flex-row md:items-center justify-between gap-8">
-        <div className="flex items-center gap-8">
-          <div className="w-12 h-12 border border-black flex items-center justify-center text-black">
+      <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-8">
+        <div className="flex items-center gap-4 md:gap-8">
+          <div className="w-10 h-10 md:w-12 md:h-12 border border-black flex items-center justify-center text-black shrink-0">
             <CreditCard size={20} />
           </div>
-          <div>
-            <h3 className="text-xl font-bold tracking-tight">{emi.loan_name}</h3>
-            <div className="flex items-center gap-6 mt-2 text-[10px] uppercase tracking-[0.15em] text-black/40 font-bold">
+          <div className="min-w-0">
+            <h3 className="text-lg md:text-xl font-bold tracking-tight truncate">{emi.loan_name}</h3>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-2 text-[10px] uppercase tracking-[0.15em] text-black/40 font-bold">
               <span>{emi.interest_rate}% Fixed</span>
               <span>{(emi.tenure_months / 12).toFixed(1)} Years Total</span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between md:justify-end gap-12">
-          <div className="text-right">
+        <div className="flex flex-row md:items-center justify-between md:justify-end gap-6 md:gap-12 pt-6 md:pt-0 border-t md:border-0 border-black/5">
+          <div className="md:text-right">
             <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-1">Monthly Assessment</p>
-            <p className="text-2xl font-serif italic">{formatCurrency(emi.emi_amount)}</p>
+            <p className="text-xl md:text-2xl font-serif italic">{formatCurrency(emi.emi_amount)}</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
               <button 
                 onClick={() => navigate(`/simulator?id=${emi.id}`)}
                 className="w-10 h-10 border border-emerald-200 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all bg-emerald-50 text-emerald-600"

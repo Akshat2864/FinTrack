@@ -68,12 +68,12 @@ export const SIPTracker: React.FC = () => {
       <header className="flex flex-col md:flex-row md:items-baseline justify-between gap-6">
         <div>
           <p className="text-[10px] uppercase tracking-[0.3em] text-black/40 font-bold">Capital Appreciation</p>
-          <h1 className="text-5xl font-serif mt-2">SIP Growth</h1>
+          <h1 className="text-3xl md:text-5xl font-serif mt-2">SIP Growth</h1>
         </div>
         {!isFormOpen && (
           <button 
             onClick={() => setIsFormOpen(true)}
-            className="text-[10px] uppercase tracking-widest font-bold px-8 py-4 bg-black text-white hover:bg-opacity-80 transition-all font-sans"
+            className="text-[10px] uppercase tracking-widest font-bold px-8 py-4 bg-black text-white hover:bg-opacity-80 transition-all font-sans w-full md:w-auto"
           >
             Initiate New Strategy
           </button>
@@ -88,9 +88,9 @@ export const SIPTracker: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden"
           >
-            <div className="bg-white p-10 rounded-sm border border-black/5 shadow-sm mb-12">
+            <div className="bg-white p-6 md:p-10 rounded-sm border border-black/5 shadow-sm mb-12">
               <h2 className="text-sm uppercase tracking-[0.2em] font-bold mb-8 italic font-serif text-black/60">Investment parameters</h2>
-              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <div className="space-y-3">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-black/40 ml-1">Asset Allocation</label>
                   <input
@@ -218,35 +218,35 @@ const SIPCard: React.FC<{ sip: SIP; onDelete: (id: string) => void }> = ({ sip, 
       animate={{ opacity: 1 }}
       className="bg-white rounded-sm border border-black/5 overflow-hidden hover:border-black/20 transition-all font-sans"
     >
-      <div className="p-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
-        <div className="flex items-center gap-10">
-          <div className="w-16 h-16 border border-black/5 flex items-center justify-center text-black bg-[#F5F2ED]">
+      <div className="p-6 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 md:gap-10">
+        <div className="flex items-center gap-6 md:gap-10">
+          <div className="w-12 h-12 md:w-16 md:h-16 border border-black/5 flex items-center justify-center text-black bg-[#F5F2ED] shrink-0">
             <TrendingUp size={24} />
           </div>
-          <div>
-            <h3 className="text-2xl font-bold tracking-tight mb-2">{sip.sip_name}</h3>
-            <div className="flex items-center gap-8 text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold">
+          <div className="min-w-0">
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight mb-2 truncate">{sip.sip_name}</h3>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold">
                <span>{sip.expected_return_rate}% Projected</span>
                <span>{(sip.duration_months / 12).toFixed(1)} Years Term</span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between md:justify-end gap-16">
-          <div className="text-right">
+        <div className="flex flex-row md:items-center justify-between md:justify-end gap-6 md:gap-16 pt-6 md:pt-0 border-t md:border-0 border-black/5">
+          <div className="md:text-right">
             <p className="text-[10px] font-bold text-black/40 uppercase tracking-widest mb-1">Monthly Inflow</p>
-            <p className="text-3xl font-serif italic text-emerald-600">{formatCurrency(sip.monthly_amount)}</p>
+            <p className="text-2xl md:text-3xl font-serif italic text-emerald-600">{formatCurrency(sip.monthly_amount)}</p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 md:gap-4">
              <button 
                 onClick={() => setExpanded(!expanded)}
-                className="w-12 h-12 border border-black/5 flex items-center justify-center hover:border-black transition-all"
+                className="w-10 h-10 md:w-12 md:h-12 border border-black/5 flex items-center justify-center hover:border-black transition-all"
               >
                 {expanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </button>
               <button 
                 onClick={() => onDelete(sip.id)}
-                className="w-12 h-12 border border-black/5 text-black hover:text-red-600 hover:border-red-600 transition-all"
+                className="w-10 h-10 md:w-12 md:h-12 border border-black/5 text-black hover:text-red-600 hover:border-red-600 transition-all"
               >
                 <Trash2 size={20} />
               </button>
@@ -260,23 +260,23 @@ const SIPCard: React.FC<{ sip: SIP; onDelete: (id: string) => void }> = ({ sip, 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="px-10 pb-12 pt-6 border-t border-black/5 bg-[#FDFCFB]"
+            className="px-6 md:px-10 pb-12 pt-6 border-t border-black/5 bg-[#FDFCFB]"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mt-6">
-               <div className="space-y-10">
-                  <div className="grid grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 mt-6">
+               <div className="space-y-8 md:space-y-10">
+                  <div className="grid grid-cols-2 gap-6 md:gap-10">
                      <div className="space-y-1">
                         <p className="text-[10px] font-bold text-black/40 uppercase tracking-[0.2em]">Total Capital</p>
-                        <p className="text-xl font-serif">{formatCurrency(totalInvested)}</p>
+                        <p className="text-lg md:text-xl font-serif">{formatCurrency(totalInvested)}</p>
                      </div>
                      <div className="space-y-1 text-emerald-600">
                         <p className="text-[10px] font-bold uppercase tracking-[0.2em]">Yield Earned</p>
-                        <p className="text-xl font-serif">{formatCurrency(earnings)}</p>
+                        <p className="text-lg md:text-xl font-serif">{formatCurrency(earnings)}</p>
                      </div>
                   </div>
-                  <div className="p-10 bg-[#1A1A1A] text-white rounded-sm shadow-2xl flex flex-col justify-between">
+                  <div className="p-8 md:p-10 bg-[#1A1A1A] text-white rounded-sm shadow-2xl flex flex-col justify-between">
                      <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mb-4 font-sans">Projected Valuation at Maturity</p>
-                     <p className="text-4xl font-serif italic tracking-tight">{formatCurrency(futureValue)}</p>
+                     <p className="text-2xl md:text-4xl font-serif italic tracking-tight">{formatCurrency(futureValue)}</p>
                   </div>
                </div>
                
